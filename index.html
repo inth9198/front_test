@@ -44,7 +44,7 @@
               "i'll back",
               "got it",
               "hi yong man",
-              "sombody help me",
+              "sombody help",
               "ok",
             ];
             const tmp = document.querySelector("#body-colors");
@@ -58,7 +58,7 @@
               t.select();
               bc.style.backgroundColor = t.value;
               bc.style.zIndex = 10;
-              bcin.innerText = randText[Math.round((Math.random() * 10) / 5)];
+              bcin.innerText = randText[Math.round(Math.random() * 10) % 5];
               console.log(bc);
               bcun.innerText = t.value;
               setTimeout(function () {
