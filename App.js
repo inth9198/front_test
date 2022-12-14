@@ -3,21 +3,30 @@ function fetchData() {
     .then((res) => res.json())
     .then((json) => {
       console.log(json);
-      const colorList = [];
       for (let i = 0; i < json.length / 5; i++) {
-        colorList.push(`<div class="line" style="display: flex">`);
+        const flexBox = document.createElement("div");
+        flexBox.style.display = "flex";
+        flexBox.className = "line";
         for (let j = 0; j < 5; j++) {
-          colorList.push(
-            `<div id="tmp" style="background-color: ${json[i * 5 + j].hex}">
-                <div id="hov" style="background-color: ${
-                  json[i * 5 + j].hex
-                }">copy</div>
-                <p>${json[i * 5 + j].name}</p></div>`
-          );
+          const box = document.createElement("div");
+          box.style.backgroundColor = json[i * 5 + j].hex;
+          box.className = "tmp";
+          box.copyText = json[i * 5 + j].hex;
+
+          const inBox = document.createElement("div");
+          inBox.className = "hov";
+          inBox.style.backgroundColor = json[i * 5 + j].hex;
+          inBox.innerText = "copy";
+          inBox.copyText = json[i * 5 + j].hex;
+
+          const name = document.createElement("p");
+          name.innerText = json[i * 5 + j].name;
+          box.appendChild(inBox);
+          box.appendChild(name);
+          flexBox.appendChild(box);
         }
-        colorList.push(`</div>`);
+        document.getElementById("body-colors").appendChild(flexBox);
       }
-      document.getElementById("body-colors").innerHTML = colorList.join("");
     })
     .then(() => {
       const randText = [
@@ -29,12 +38,14 @@ function fetchData() {
       ];
       const tmp = document.querySelector("#body-colors");
       tmp.addEventListener("click", (event) => {
+        console.log(event.target.copyText);
+
         const t = document.createElement("textarea");
         const bc = document.getElementById("moni");
         const bcin = document.getElementById("monin");
         const bcun = document.getElementById("monun");
         document.body.appendChild(t);
-        t.value = event.target.outerHTML.match(/#\w\w\w\w\w\w/)[0];
+        t.value = event.target.copyText;
         t.select();
         bc.style.backgroundColor = t.value;
         bc.style.zIndex = 10;

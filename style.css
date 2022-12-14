@@ -30,7 +30,7 @@ p {
   right: 8px;
   z-index: 1;
 }
-#hov {
+.hov {
   width: 100px;
   height: 40px;
   margin: auto;
@@ -41,7 +41,7 @@ p {
   border-radius: 5%;
   border: solid rgb(210, 210, 210);
 }
-#tmp:hover #hov {
+.tmp:hover .hov {
   flex: 1;
   color: aliceblue;
   position: relative;
