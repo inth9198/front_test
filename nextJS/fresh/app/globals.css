@@ -1,0 +1,18 @@
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: xxx-large;
+  margin-top: 300px;
+}
+
+.sub-title {
+  text-align: center;
+  font-size: x-large;
+}
+
+.nav {
+  text-decoration: none;
+  margin: 10px;
+  font-size: large;
+  padding-top: 40px;
+}
